@@ -1,9 +1,10 @@
 using UnityEngine;
-using TMPro;  // Importante para usar TextMeshPro
+using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
-    public TextMeshProUGUI player1ScoreText;  // Atualizado para TextMeshPro
+    public TextMeshProUGUI player1ScoreText; 
     public TextMeshProUGUI player2ScoreText;
 
     public GameObject ball;
@@ -11,9 +12,27 @@ public class GameManager : MonoBehaviour
     private int player1Score = 0;
     private int player2Score = 0;
 
+    public GameObject[] rackets1; // raquetes do jogador 1
+    public GameObject[] rackets2; // raquetes do jogador 2
+
     void Start()
     {
+        SetRackets();
         UpdateScoreUI();
+    }
+
+    private void SetRackets()
+    {
+        int selectedRacket1 = PlayerSelection.selectedOption1 - 1;
+        int selectedRacket2 = PlayerSelection.selectedOption2 - 1;
+        for (int i = 0; i < rackets1.Length; i++)
+        {
+            rackets1[i].SetActive(i == selectedRacket1);
+        }
+        for (int i = 0; i < rackets2.Length; i++)
+        {
+            rackets2[i].SetActive(i == selectedRacket2);
+        }
     }
 
     public void AddPointPlayer1()
