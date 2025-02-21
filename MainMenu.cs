@@ -6,7 +6,6 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
-        print("Botão Play pressionado!"); // Mensagem de depuração
         SceneManager.LoadScene("PlayerSelection");  // Carrega a cena do jogo
     }
 

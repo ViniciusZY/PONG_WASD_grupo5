@@ -1,6 +1,5 @@
 using UnityEngine;
 using TMPro;
-using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +7,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI player2ScoreText;
 
     public GameObject ball;
+    public GameObject pauseMenuManager;
 
     private int player1Score = 0;
     private int player2Score = 0;
@@ -35,17 +35,25 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddPointPlayer1()
+    public void AddPoint(int playerID)
     {
-        player1Score++;
-        UpdateScoreUI();
+        if (playerID == 1)
+        {
+            player1Score++;
+            player1ScoreText.text = player1Score.ToString();
+        }
+        else {
+            player2Score++;
+            player2ScoreText.text = player2Score.ToString();
+        }
+        SoundManager.instance.PlaySoundEffect(SoundManager.instance.scoreSound);
+        if(player1Score >= 10 ||  player2Score >= 10)
+        {
+            pauseMenuManager.GetComponent<PauseMenu>().SetWinner(playerID);
+            SoundManager.instance.PlayWinSound();
+        }
     }
 
-    public void AddPointPlayer2()
-    {
-        player2Score++;
-        UpdateScoreUI();
-    }
 
     void UpdateScoreUI()
     {
