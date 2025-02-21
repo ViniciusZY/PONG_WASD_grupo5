@@ -63,10 +63,7 @@ public class ScriptBall : MonoBehaviour
     // Reflex�o ao colidir com outros objetos
     void OnCollisionEnter2D(Collision2D collision)
     {
-        print("Colisão detectada com: " + collision.gameObject.name);
-
-        // Velocidade após a reflexão
-        print("Velocidade após: " + rig.linearVelocity);
+        SoundManager.instance.PlaySoundEffect(SoundManager.instance.ballHitSound);
     }
 
 

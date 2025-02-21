@@ -10,11 +10,11 @@ public class Goals : MonoBehaviour
         {
             if (gameObject.name == "LeftGoal")
             {
-                gameManager.AddPointPlayer2();  // Ponto para o Jogador 2
+                gameManager.AddPoint(2);  // Ponto para o Jogador 2
             }
             else if (gameObject.name == "RightGoal")
             {
-                gameManager.AddPointPlayer1();  // Ponto para o Jogador 1
+                gameManager.AddPoint(1);  // Ponto para o Jogador 1
             }
 
             gameManager.ResetBall();  // Reseta a bolinha após o ponto
